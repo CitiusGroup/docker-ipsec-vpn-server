@@ -1,9 +1,0 @@
-Jukan Linuxin testiympäristö (DEV3-CITIUSALL)
-
-export GITPASSWORD="password"
-export GITUSERNAME="username"
-cd /citiustest/docker-citius-server-compose-test
-git fetch origin
-git reset --hard origin/master
-git pull
-sh setup.sh

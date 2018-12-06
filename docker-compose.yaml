@@ -1,50 +1,16 @@
-# Compose Citius Server
-
-version: '3'
+version: '2'
 
 services:
-
-  citius:
-    image: citiusgroup/centos7-citius
-    container_name: centos7-citius-${GITUSERNAME}
-    hostname: centos7-citius-${GITUSERNAME}
-    extra_hosts:
-      - "apibuild.citius.com:127.0.0.1"
-      - "apidev.citius.com:127.0.0.1"
-      - "apitest.citius.com:127.0.0.1"
-      - "citius.com:127.0.0.1"
-      - "deskbuild.citius.com:127.0.0.1"
-      - "deskdev.citius.com:127.0.0.1"
-      - "desktest.citius.com:127.0.0.1"
-      - "portal.citius.com:127.0.0.1"
-      - "portalbuild.citius.com:127.0.0.1"
-      - "portaldev.citius.com:127.0.0.1"
-    privileged: true
-    restart: 'no'
-    network_mode: bridge
-    tty: true
+  vpn:
+    image: hwdsl2/ipsec-vpn-server
+    restart: always
+    env_file:
+      - ./vpn.env
     ports:
-      - "443:443"
-      - "3306:3306"
-      - "8022:22"
-      - "8080:80"
-      - "8090:8090"
-      - "8091:8091"
-      - "9001:9001"
-      - "9200:9200"
-      - "19999:19999"
-
+      - "500:500/udp"
+      - "4500:4500/udp"
+    privileged: true
+    hostname: ipsec-vpn-server
+    container_name: ipsec-vpn-server
     volumes:
-      - ./CitiusAPI:/citius/code/development/citiusapi/
-      - ./CitiusAPIDocs:/citius/code/development/citiusapi/docs
-      - ./CitiusAPILibs:/citius/code/development/citiusapi/libs
-      - ./cache:/citius/code/development/citiusapi/cache
-      - ./settings/citiusapi/settings.php:/citius/code/development/citiusapi/settings/settings.php
-      - ./CitiusDesk-build:/citius/code/development/citiusdesk/www/
-      - ./settings/citiusdesk/settings.json:/citius/code/development/citiusdesk/www/settings/settings.json
-      - ./CitiusPortal-build:/citius/code/development/citiusportal/
-      - ./settings/citiusportal/settings.php:/citius/code/development/citiusportal/settings/settings.php
-      - ./cronjob:/citius/cronjob
-      - ./logs:/citius/logs/development
-      - ./elasticsearch:/var/lib/elasticsearch
-      - ./logs/elasticsearchlog:/var/log/elasticsearch
+      - /lib/modules:/lib/modules:ro
