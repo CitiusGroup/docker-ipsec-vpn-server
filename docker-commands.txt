@@ -1,0 +1,24 @@
+Käynnistyskomennot, jotka voi ajaa esim. CG-DOCKER-TEST-palvelimella
+
+sudo -i
+
+mkdir /docker-ipsec-vpn-server
+cd /citius/docker-ipsec-vpn-server
+git fetch origin
+git reset --hard origin/master
+git pull
+
+docker-compose up -d
+docker-compose ps
+
+docker exec -it ipsec-vpn-server bash
+
+----------
+
+Repositoryn luonti CG-DOCKER-TEST-palvelimelle
+
+sudo -i
+
+mkdir /docker-ipsec-vpn-server
+cd /citius/docker-ipsec-vpn-server
+git clone -b master https://CitiusWiki:mra7n8nsy4kf@github.com/CitiusGroup/docker-ipsec-vpn-server.git .
