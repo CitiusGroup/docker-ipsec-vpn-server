@@ -19,6 +19,6 @@ Repositoryn luonti CG-DOCKER-TEST-palvelimelle
 
 sudo -i
 
-mkdir /docker-ipsec-vpn-server
+mkdir /citius/docker-ipsec-vpn-server
 cd /citius/docker-ipsec-vpn-server
 git clone -b master https://CitiusWiki:mra7n8nsy4kf@github.com/CitiusGroup/docker-ipsec-vpn-server.git .
