@@ -1,0 +1,15 @@
+*.pyc
+.pydevproject
+_gsdata_/*
+cache/*
+/.project
+
+/cache
+/CitiusAPI
+/CitiusAPILibs
+/CitiusMobileLibraryIonic
+/CitiusDesk
+/CitiusDesk-build
+/CitiusPortal
+/CitiusPortal-build
+/logs
